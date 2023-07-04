@@ -1,14 +1,17 @@
-let valores = {0:'piedra', 1:'papel', 2:'tijeras'};
+console.log('');
+
 
 function obtenerJugadaComputadora() {
+    let valores = {0:'piedra', 1:'papel', 2:'tijeras'};
     let jugadaComputador = valores[Math.floor(Math.random() * 3)];
     return jugadaComputador;
 }
 //console.log(obtenerJugadaComputadora())
 
-function obtenerJugadaUsuario() { // *** ver si se puede armar esta funcion con un bucle ***
+
+function obtenerJugadaUsuario() {
     const readlineSync = require('readline-sync');
-    let jugadaUsuario = readlineSync.question("*** Bienvenido a PIEDRA-PAPEL-TIJERAS !!! ***    ====> INGRESA UNA OPCION...: ");
+    let jugadaUsuario = readlineSync.question("*** Bienvenido a PIEDRA-PAPEL-TIJERAS !!! ***  ====> INGRESA UNA OPCION PARA EMPEZAR A JUGAR...: ");
     jugadaUsuario = jugadaUsuario.toLowerCase();
 
     while (jugadaUsuario !== 'piedra' && jugadaUsuario !== 'papel' && jugadaUsuario !== 'tijeras') {
@@ -20,10 +23,26 @@ function obtenerJugadaUsuario() { // *** ver si se puede armar esta funcion con 
 }
 //console.log(obtenerJugadaUsuario());
 
-function determinarGanador () {
-    if (jugadaComputador === jugadaUsuario) {
-        let resultado = 'Empate';
-    }
-    
 
+function determinarGanador(pc, jugador) {
+   let resultado = '';
+   if (pc === jugador) {
+       resultado = 'Empate';
+    } else if (pc == 'piedra' && jugador == 'tijeras' || pc == 'papel' && jugador == 'piedra' || pc == 'tijeras' && jugador == 'papel') {
+        resultado = 'Gana la computadora';
+    } else {
+        resultado = 'Gana el usuario';
+    }
+    return resultado;
 }
+//console.log(determinarGanador(obtenerJugadaComputadora(), obtenerJugadaUsuario()));
+
+
+let jugadaComputador = obtenerJugadaComputadora();
+let jugadaUsuario = obtenerJugadaUsuario();
+let ganador = determinarGanador(jugadaComputador, jugadaUsuario);
+
+console.log('La computadora eligio: %s', jugadaComputador);
+console.log('El usuario eligio: %s', jugadaUsuario);
+console.log('El resultado fue: %s', ganador);
+console.log('');
