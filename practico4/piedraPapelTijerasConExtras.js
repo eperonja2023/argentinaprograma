@@ -1,8 +1,13 @@
 console.log('');
 
+const PIEDRA = 'piedra';
+const PAPEL = 'papel';
+const TIJERAS = 'tijeras';
+
 
 function obtenerJugadaComputadora() {
-    let valores = {0:'piedra', 1:'papel', 2:'tijeras'};
+    //let valores = {0:'piedra', 1:'papel', 2:'tijeras'};
+    let valores = {0:PIEDRA, 1:PAPEL, 2:TIJERAS};
     let jugadaComputador = valores[Math.floor(Math.random() * 3)];
     return jugadaComputador;
 }
